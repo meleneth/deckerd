@@ -8,7 +8,8 @@ RSpec.describe DeckCardParser do
 <Deck xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <NetDeckID>0</NetDeckID>
   <PreconstructedDeckID>0</PreconstructedDeckID>
-  <Cards CatID="12527" Quantity="4" Sideboard="false" Name="Cloud of Faeries" />
+  <Cards CatID="12527" Quantity="1" Sideboard="false" Name="Cloud of Faeries" />
+  <Cards CatID="12527" Quantity="3" Sideboard="false" Name="Cloud of Faeries" />
   <Cards CatID="46587" Quantity="2" Sideboard="true" Name="Dispel" />
 </Deck>
 HERE
