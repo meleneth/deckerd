@@ -1,0 +1,13 @@
+= form_for @magic_card_name do |f|
+  - if @magic_card_name.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@magic_card_name.errors.count, "error")} prohibited this magic_card_name from being saved:"
+      %ul
+        - @magic_card_name.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions
+    = f.submit 'Save'

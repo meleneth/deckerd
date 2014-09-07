@@ -1,0 +1,21 @@
+%h1 Listing magic_decks
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th
+    %th
+    %th
+
+  - @magic_decks.each do |magic_deck|
+    %tr
+      %td= magic_deck.name
+      %td= magic_deck.description
+      %td= link_to 'Show', magic_deck
+      %td= link_to 'Edit', edit_magic_deck_path(magic_deck)
+      %td= link_to 'Destroy', magic_deck, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Magic deck', new_magic_deck_path

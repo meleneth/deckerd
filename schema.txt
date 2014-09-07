@@ -1,0 +1,6 @@
+rails generate scaffold magic_card_name name:string
+rails generate scaffold magic_deck name:string description:text
+rails generate model magic_deck_card magic_deck:references magic_card_name:references maindeck:integer sideboard:integer
+rails generate scaffold magic_card_type name:string
+rails generate model magic_card_type_map magic_card_name:references magic_card_type:references
+

@@ -1,0 +1,19 @@
+%h1 Listing magic_card_names
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @magic_card_names.each do |magic_card_name|
+    %tr
+      %td= magic_card_name.name
+      %td= link_to 'Show', magic_card_name
+      %td= link_to 'Edit', edit_magic_card_name_path(magic_card_name)
+      %td= link_to 'Destroy', magic_card_name, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Magic card name', new_magic_card_name_path

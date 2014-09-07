@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @magic_deck.name
+%p
+  %b Description:
+  = @magic_deck.description
+
+= link_to 'Edit', edit_magic_deck_path(@magic_deck)
+\|
+= link_to 'Back', magic_decks_path
