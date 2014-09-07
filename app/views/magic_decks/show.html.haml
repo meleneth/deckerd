@@ -7,6 +7,15 @@
   %b Description:
   = @magic_deck.description
 
+Maindeck
+%ul
+  - @magic_deck.maindeck_cards.each do |card|
+    %li= "#{card.maindeck} #{card.magic_card_name.name}"
+Sideboard
+%ul
+  - @magic_deck.sideboard_cards.each do |card|
+    %li= "#{card.sideboard} #{card.magic_card_name.name}"
+
 = link_to 'Edit', edit_magic_deck_path(@magic_deck)
 \|
 = link_to 'Back', magic_decks_path

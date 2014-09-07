@@ -26,6 +26,9 @@ class MagicDecksController < ApplicationController
   def create
     @magic_deck = MagicDeck.new(magic_deck_params)
 
+    parser = DeckCardParser.new
+    parser.parse(@magic_deck, params["contents"])
+
     respond_to do |format|
       if @magic_deck.save
         format.html { redirect_to @magic_deck, notice: 'Magic deck was successfully created.' }
