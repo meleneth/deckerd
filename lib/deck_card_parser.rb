@@ -8,7 +8,17 @@ class DeckCardParser
   def parse_mtgo(deck, card_text)
     parser = Nokogiri::XML(card_text)
     parser.xpath("//Cards").each do |card|
-      MagicCardName.find_or_create_by(:name => card["Name"])
+      magic_card_name = MagicCardName.find_or_create_by(name: card["Name"])
+      deck_card = MagicDeckCard.create(magic_deck: deck, magic_card_name: magic_card_name)
+      num = card["Quantity"].to_i
+
+      if card["Sideboard"] == "true" then
+        deck_card.sideboard = num
+      else
+        deck_card.maindeck = num
+      end
+
+      deck_card.save!
     end
   end
 end
