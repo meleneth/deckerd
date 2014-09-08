@@ -13,6 +13,13 @@ class MagicProjectsController < ApplicationController
     @magic_project = MagicProject.includes(magic_project_decks: [magic_deck: [magic_deck_cards: [:magic_card_name]]]).find(params[:id])
     @project_decks = @magic_project.magic_project_decks
     @all_decks = MagicDeck.all
+    @needs = CardCollection.new
+
+    @project_decks.each do |deck|
+      deck.magic_deck.magic_deck_cards.each do |magic_card|
+        @needs.add_card(magic_card)
+      end
+    end
   end
 
   # GET /magic_projects/new

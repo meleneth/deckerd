@@ -18,6 +18,14 @@ Decks in Project
       %ul
         - deck.sideboard_cards.each do |card|
           %li= "#{card.sideboard} #{card.magic_card_name.name}"
+  %div{:style => "float: left"}
+    %h3 Need
+    %ul
+      - @needs.card_names.each do |card_name|
+        %li= "#{@needs.qty(card_name)} #{card_name}"
+  %div{:style => "float: left"}
+    %h3 Have
+
     
 = link_to 'Edit', edit_magic_project_path(@magic_project)
 \|
