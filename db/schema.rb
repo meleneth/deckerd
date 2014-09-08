@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140907073618) do
+ActiveRecord::Schema.define(version: 20140908005712) do
 
   create_table "magic_card_names", force: true do |t|
     t.string   "name"
@@ -50,6 +50,31 @@ ActiveRecord::Schema.define(version: 20140907073618) do
   create_table "magic_decks", force: true do |t|
     t.string   "name"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magic_project_cards", force: true do |t|
+    t.integer  "magic_card_name_id"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "magic_project_cards", ["magic_card_name_id"], name: "index_magic_project_cards_on_magic_card_name_id"
+
+  create_table "magic_project_decks", force: true do |t|
+    t.integer  "magic_project_id"
+    t.integer  "magic_deck_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "magic_project_decks", ["magic_deck_id"], name: "index_magic_project_decks_on_magic_deck_id"
+  add_index "magic_project_decks", ["magic_project_id"], name: "index_magic_project_decks_on_magic_project_id"
+
+  create_table "magic_projects", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

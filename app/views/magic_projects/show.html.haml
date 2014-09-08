@@ -3,7 +3,16 @@
 %p
   %b Name:
   = @magic_project.name
+Decks in Project
+%ul
+  - @project_decks.each do |deck|
+    %li= link_to deck.magic_deck.name, [deck, @magic_project, :remove_deck], :method => :post
 
+Click a deck to add it.
+%ul
+  - @all_decks.each do |deck|
+    %li= link_to deck.name, [deck, @magic_project, :add_deck], :method => :post
+    
 = link_to 'Edit', edit_magic_project_path(@magic_project)
 \|
 = link_to 'Back', magic_projects_path

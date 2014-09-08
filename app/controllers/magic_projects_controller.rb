@@ -10,11 +10,26 @@ class MagicProjectsController < ApplicationController
   # GET /magic_projects/1
   # GET /magic_projects/1.json
   def show
+    @project_decks = @magic_project.magic_project_decks
+    @all_decks = MagicDeck.all
   end
 
   # GET /magic_projects/new
   def new
     @magic_project = MagicProject.new
+  end
+
+  def add_deck
+    @magic_deck = MagicDeck.find(params[:magic_deck_id])
+    @magic_project = MagicProject.find(params[:magic_project_id])
+    MagicProjectDeck.create(:magic_deck => @magic_deck, :magic_project => @magic_project)
+    redirect_to :back
+  end
+
+  def remove_deck
+    @magic_project_deck = MagicProjectDeck.find(params[:magic_project_deck_id])
+    @magic_project_deck.destroy
+    redirect_to :back
   end
 
   # GET /magic_projects/1/edit
