@@ -1,0 +1,19 @@
+%h1 Listing magic_projects
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @magic_projects.each do |magic_project|
+    %tr
+      %td= magic_project.name
+      %td= link_to 'Show', magic_project
+      %td= link_to 'Edit', edit_magic_project_path(magic_project)
+      %td= link_to 'Destroy', magic_project, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Magic project', new_magic_project_path

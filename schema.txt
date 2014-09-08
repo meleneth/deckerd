@@ -4,3 +4,7 @@ rails generate model magic_deck_card magic_deck:references magic_card_name:refer
 rails generate scaffold magic_card_type name:string
 rails generate model magic_card_type_map magic_card_name:references magic_card_type:references
 
+rails generate scaffold magic_project name:string
+rails generate model magic_project_deck magic_project:references magic_deck:references
+rails generate model magic_project_card magic_card_name:references quantity:integer
+

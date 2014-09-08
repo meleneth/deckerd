@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @magic_project.name
+
+= link_to 'Edit', edit_magic_project_path(@magic_project)
+\|
+= link_to 'Back', magic_projects_path

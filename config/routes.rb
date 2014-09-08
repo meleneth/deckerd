@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :magic_projects
+
   resources :magic_card_types
 
   resources :magic_decks
