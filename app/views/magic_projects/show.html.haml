@@ -4,17 +4,20 @@
   %b Name:
   = @magic_project.name
 Decks in Project
-%ul
-  - @project_decks.each do |deck|
-    %li<
-      = deck.magic_deck.name
-      &nbsp;
-      = "[#{ link_to('remove', [deck, @magic_project, :remove_deck], :method => :post) }]".html_safe
 
-Click a deck to add it.
-%ul
-  - @all_decks.each do |deck|
-    %li= link_to deck.name, [deck, @magic_project, :add_deck], :method => :post
+%div
+  - @project_decks.each do |deck|
+    - deck = deck.magic_deck
+    %div{:style => "float: left"}
+      %h3= deck.name
+      %h5 Maindeck
+      %ul
+        - deck.maindeck_cards.each do |card|
+          %li= "#{card.maindeck} #{card.magic_card_name.name}"
+      %h5 Sideboard
+      %ul
+        - deck.sideboard_cards.each do |card|
+          %li= "#{card.sideboard} #{card.magic_card_name.name}"
     
 = link_to 'Edit', edit_magic_project_path(@magic_project)
 \|

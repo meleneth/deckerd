@@ -1,5 +1,5 @@
 class MagicProjectsController < ApplicationController
-  before_action :set_magic_project, only: [:edit, :update, :destroy]
+  before_action :set_magic_project, only: [:update, :destroy]
 
   # GET /magic_projects
   # GET /magic_projects.json
@@ -10,7 +10,7 @@ class MagicProjectsController < ApplicationController
   # GET /magic_projects/1
   # GET /magic_projects/1.json
   def show
-    @magic_project = MagicProject.includes(magic_project_decks: [:magic_deck]).find(params[:id])
+    @magic_project = MagicProject.includes(magic_project_decks: [magic_deck: [magic_deck_cards: [:magic_card_name]]]).find(params[:id])
     @project_decks = @magic_project.magic_project_decks
     @all_decks = MagicDeck.all
   end
@@ -35,6 +35,9 @@ class MagicProjectsController < ApplicationController
 
   # GET /magic_projects/1/edit
   def edit
+    @magic_project = MagicProject.includes(magic_project_decks: [:magic_deck]).find(params[:id])
+    @project_decks = @magic_project.magic_project_decks
+    @all_decks = MagicDeck.all
   end
 
   # POST /magic_projects
