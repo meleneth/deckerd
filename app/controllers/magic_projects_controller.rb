@@ -10,15 +10,20 @@ class MagicProjectsController < ApplicationController
   # GET /magic_projects/1
   # GET /magic_projects/1.json
   def show
-    @magic_project = MagicProject.includes(magic_project_decks: [magic_deck: [magic_deck_cards: [:magic_card_name]]]).find(params[:id])
+    @magic_project = MagicProject.includes(magic_project_decks: [magic_deck: [magic_deck_cards: [:magic_card_name]]], magic_project_cards: [:magic_card_name]).find(params[:id])
     @project_decks = @magic_project.magic_project_decks
     @all_decks = MagicDeck.all
     @needs = CardCollection.new
+    @haves = @magic_project.magic_project_cards
 
     @project_decks.each do |deck|
       deck.magic_deck.magic_deck_cards.each do |magic_card|
         @needs.add_card(magic_card)
       end
+    end
+
+    @haves.each do |card|
+      @needs.remove_card(card.magic_card_name.name, card.quantity)
     end
   end
 

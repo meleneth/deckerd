@@ -7,12 +7,12 @@ Decks in Project
     %li<
       = deck.magic_deck.name
       &nbsp;
-      = "[#{ link_to('remove', [deck, @magic_project, :remove_deck], :method => :post) }]".html_safe
+      = "[#{ link_to('remove', [@magic_project, :remove_deck, deck], :method => :post) }]".html_safe
 
 Click a deck to add it.
 %ul
   - @all_decks.each do |deck|
-    %li= link_to deck.name, [deck, @magic_project, :add_deck], :method => :post
+    %li= link_to deck.name, [@magic_project, :add_deck, deck], :method => :post
 
 = link_to 'Show', @magic_project
 \|

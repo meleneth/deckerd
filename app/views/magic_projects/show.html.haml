@@ -8,23 +8,28 @@ Decks in Project
 %div
   - @project_decks.each do |deck|
     - deck = deck.magic_deck
-    %div{:style => "float: left"}
-      %h3= deck.name
+    %div.panel.panel-default{:style => "float: left"}
+      .panel-heading
+        %h4= deck.name
       %h5 Maindeck
-      %ul
+      %ul.list-group
         - deck.maindeck_cards.each do |card|
-          %li= "#{card.maindeck} #{card.magic_card_name.name}"
+          %li.list-group-item= "#{card.maindeck} #{card.magic_card_name.name}"
       %h5 Sideboard
-      %ul
+      %ul.list-group
         - deck.sideboard_cards.each do |card|
-          %li= "#{card.sideboard} #{card.magic_card_name.name}"
-  %div{:style => "float: left"}
-    %h3 Need
-    %ul
+          %li.list-group-item= "#{card.sideboard} #{card.magic_card_name.name}"
+  %div.panel.panel-default{:style => "float: left"}
+    .panel-heading
+      %h4 Need
+    %ul.list-group
       - @needs.card_names.each do |card_name|
-        %li= "#{@needs.qty(card_name)} #{card_name}"
+        %li.list-group-item
+          = @needs.qty(card_name)
+          = card_name
   %div{:style => "float: left"}
-    %h3 Have
+    .panel-heading
+      %h4 Have
 
     
 = link_to 'Edit', edit_magic_project_path(@magic_project)
