@@ -8,8 +8,6 @@ Rails.application.routes.draw do
 
   resources :magic_decks
 
-  resource :magic_decks
-
   resources :magic_project_decks
 
   resources :magic_card_names
