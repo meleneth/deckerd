@@ -45,6 +45,18 @@ class MagicProjectsController < ApplicationController
     redirect_to :back
   end
 
+  def add_card
+    @magic_project = MagicProject.find(params[:magic_project_id])
+    @magic_card_name = MagicCardName.find(params[:magic_card_name_id])
+    redirect_to :back
+  end
+
+  def remove_card
+    @magic_project = MagicProject.find(params[:magic_project_id])
+    @magic_card_name = MagicCardName.find(params[:magic_card_name_id])
+    redirect_to :back
+  end
+
   # GET /magic_projects/1/edit
   def edit
     @magic_project = MagicProject.includes(magic_project_decks: [:magic_deck]).find(params[:id])
