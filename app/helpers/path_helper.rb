@@ -1,4 +1,6 @@
 module PathHelper
+  extend self
+
   def self.path_route_helper_function_name(*args)
     name      = Array.new
     arg_names = Array.new
@@ -29,7 +31,7 @@ module PathHelper
 
   def self.path_route_helper(*args)
     helper_body = []
-    helper_body << "def self.#{ path_route_helper_function_name(*args) }";
+    helper_body << "def #{ path_route_helper_function_name(*args) }";
     
     args.each do |arg|
       if arg.is_a? Class
