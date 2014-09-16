@@ -26,7 +26,7 @@ Decks in Project
       - @needs.card_names.each do |card_name|
         %li.list-group-item
           = @needs.qty(card_name)
-          = card_name
+          = link_to card_name, [@magic_project, :add_card, @needs.card_for_name(card_name).magic_card_name]
   %div{:style => "float: left"}
     .panel-heading
       %h4 Have

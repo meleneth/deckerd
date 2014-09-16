@@ -59,6 +59,9 @@ module PathHelper
   path_route_helper MagicProject, :add_deck, MagicDeck
   path_route_helper MagicProject, :remove_deck, MagicProjectDeck
 
+  path_route_helper MagicProject, :add_card, MagicCardName
+  path_route_helper MagicProject, :remove_card, MagicCardName
+
 end
   
 

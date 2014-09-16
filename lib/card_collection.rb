@@ -8,7 +8,7 @@ class CardCollection
       return card if card.name == name
     end
 
-    card = OpenStruct.new :name => name, :magic_card_name_id => nil, :qty => 0
+    card = OpenStruct.new :name => name, :magic_card_name_id => nil, :qty => 0, :magic_card_name => nil
     @cards << card
     card
   end
@@ -16,6 +16,7 @@ class CardCollection
   def add_card(magic_card)
     card = card_for_name(magic_card.magic_card_name.name)
     card.magic_card_name_id = magic_card.magic_card_name_id
+    card.magic_card_name = magic_card.magic_card_name
     card.qty = card.qty + (magic_card.maindeck || 0) + (magic_card.sideboard || 0)
   end
 
