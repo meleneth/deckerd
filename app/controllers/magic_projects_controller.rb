@@ -22,9 +22,13 @@ class MagicProjectsController < ApplicationController
       end
     end
 
+    h = []
     @haves.each do |card|
-      @needs.remove_card(card.magic_card_name.name, card.quantity)
+      @needs.remove_card_qty(card.magic_card_name.name, card.quantity)
+      h << card
     end
+
+    @haves = h.sort {|a, b| a.magic_card_name.name <=> b.magic_card_name.name }
   end
 
   # GET /magic_projects/new
@@ -48,12 +52,22 @@ class MagicProjectsController < ApplicationController
   def add_card
     @magic_project = MagicProject.find(params[:magic_project_id])
     @magic_card_name = MagicCardName.find(params[:magic_card_name_id])
+    project_card = MagicProjectCard.find_or_create_by(magic_project_id: @magic_project.id, magic_card_name_id: @magic_card_name.id)
+    project_card.quantity = (project_card.quantity || 0) + 1
+    project_card.save
     redirect_to :back
   end
 
   def remove_card
     @magic_project = MagicProject.find(params[:magic_project_id])
     @magic_card_name = MagicCardName.find(params[:magic_card_name_id])
+    project_card = MagicProjectCard.find_or_create_by(magic_project_id: @magic_project.id, magic_card_name_id: @magic_card_name.id)
+    project_card.quantity = project_card.quantity - 1
+    if project_card.quantity == 0
+      project_card.destroy
+    else
+      project_card.save
+    end
     redirect_to :back
   end
 

@@ -30,6 +30,10 @@ Decks in Project
   %div{:style => "float: left"}
     .panel-heading
       %h4 Have
+      - @haves.each do |card|
+        %li.list-group-item
+          = card.quantity
+          = link_to card.magic_card_name.name, [@magic_project, :remove_card, card.magic_card_name], :method => :post
 
     
 = link_to 'Edit', edit_magic_project_path(@magic_project)
